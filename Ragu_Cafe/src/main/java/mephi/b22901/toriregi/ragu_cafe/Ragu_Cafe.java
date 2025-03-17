@@ -11,6 +11,6 @@ package mephi.b22901.toriregi.ragu_cafe;
 public class Ragu_Cafe {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        GUI gui = new GUI();
     }
 }
