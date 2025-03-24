@@ -8,20 +8,31 @@ package mephi.b22901.toriregi.ragu_cafe;
  *
  * @author Регина
  */
-public class Base {
-    private String name;
-    private int cost;
+public class Base implements Dish{
+    private final String name = "Нордское рагу";
+    private final int price = 50;
     
     public Base(){
-        this.name = "Нордское рагу";
-        this.cost = 50;
     }
     
+    @Override
     public String getName(){
         return name;
     }
     
-    public int getCost(){
-        return cost;
+    @Override
+    public int getPrice(){
+        return price;
     }
+
+    @Override
+    public void setPrice(int price) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void setName(String name) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }

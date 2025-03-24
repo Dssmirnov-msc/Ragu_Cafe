@@ -8,17 +8,27 @@ package mephi.b22901.toriregi.ragu_cafe;
  *
  * @author Регина
  */
-public abstract class Decorator {
-    private Base baseOrder;
-    private String dobavki;
-    private int finalCost;
-    
-    public Decorator(){
-        baseOrder = new Base();
+public abstract class Decorator implements Dish{
+    private Dish dish;
+
+       
+    public Decorator(Dish ndish){
+       dish = ndish;
     }
-    
+
+    public void setDish(Dish dish) {
+        this.dish = dish;
+    }
+        
+    @Override
     public String getName(){
-        String fullName = baseOrder.getName();
-        return fullName;
+        return dish.getName();
     }
+
+    @Override
+    public int getPrice(){
+        return dish.getPrice();
+    };
+    
+    
 }

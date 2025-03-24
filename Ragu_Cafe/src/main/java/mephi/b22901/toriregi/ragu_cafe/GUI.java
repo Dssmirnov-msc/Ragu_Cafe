@@ -20,11 +20,15 @@ import javax.swing.JRadioButton;
  */
 public class GUI {
 
+    private DobavkiManager manager;
+    
     public GUI() {
         JFrame frame = new JFrame("Оформление заказа");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(450, 300);
         frame.setLayout(new BorderLayout());
+        
+        manager = new DobavkiManager();
 
         JButton simpleOrder = new JButton("Рагу без добавок");
         JButton compOrder = new JButton("Рагу с добавками");
@@ -41,7 +45,7 @@ public class GUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Base base = new Base();
-                Order newOrder = new Order(base.getName(), base.getCost());
+                Order newOrder = new Order(base.getName(), base.getPrice());
                 JOptionPane.showMessageDialog(frame, newOrder.toString(), "OK", JOptionPane.INFORMATION_MESSAGE);
             }
         });
@@ -61,19 +65,23 @@ public class GUI {
         frame.setSize(200, 300);
         frame.setLayout(new BorderLayout());
         
+        
+        
         JButton result = new JButton("Сделать заказ");
         
-        JRadioButton button1 = new JRadioButton("Огненный соус");
-        JRadioButton button2 = new JRadioButton("Двойная порция оленина");
-        JRadioButton button3 = new JRadioButton("Снежные ягоды");
-        JRadioButton button4 = new JRadioButton("Нордская лепешка");
+        String[] allDobavkiNames = {"Огненный соус", "Двойная порция оленина", 
+            "Снежные ягоды", "Нордская лепешка"}; 
+        
+        int[] allPrices = {10, 20, 5, 7};
+        
+        for (int i = 0; i < 4; i++) {
+            manager.createNewOption(allDobavkiNames[i], allPrices[i]);
+        }
+        
         
         
         JPanel panel = new JPanel();
-        panel.add(button1);
-        panel.add(button2);
-        panel.add(button3);
-        panel.add(button4);
+        manager.setRadioButtonsToPanel(panel);
         
         frame.add(panel, BorderLayout.CENTER);
         frame.add(result, BorderLayout.SOUTH);
@@ -86,6 +94,10 @@ public class GUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 
+                Dish dish = manager.createDish();
+                
+                Order newOrder = new Order(dish.getName(), dish.getPrice());
+                JOptionPane.showMessageDialog(frame, newOrder.toString(), "OK", JOptionPane.INFORMATION_MESSAGE);
             }
         });
         
